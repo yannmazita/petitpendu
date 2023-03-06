@@ -66,7 +66,7 @@ class Tui:
         """
         mot: list[str] = self.__jeu.motCourant
         sys.stdout.write(f"{' '.join(mot)}\n")
-        sys.stdout.write(f"{self.__jeu.dico.mot}\n")
+        #sys.stdout.write(f"{self.__jeu.dico.mot}\n")
 
     def demanderLettre(self, numeroJoueur: int) -> None:
         """
