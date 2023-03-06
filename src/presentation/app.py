@@ -1,8 +1,8 @@
 import sys
 from pathlib import Path
 
-from tui import Tui
-from src.application.helpers import getProjectRoot
+from .tui import Tui
+from ..application.helpers import getProjectRoot
 
 
 def main() -> int:

@@ -3,8 +3,8 @@ from random import uniform
 from unidecode import unidecode
 import json
 
-from src.application.domain import Joueur
-from src.application.helpers import getProjectRoot
+from ..application.domain import Joueur
+from ..application.helpers import getProjectRoot
 
 
 class Dictionnaire:
