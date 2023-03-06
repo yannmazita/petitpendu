@@ -83,7 +83,7 @@ class Save:
         Returns:
             None
         """
-        with open(Path(getProjectRoot() / "les_exceptions" / "le_pendu" / "sauvegardes" / f"{joueur.nom}.json"), "w") \
+        with open(Path(getProjectRoot() / "sauvegardes" / f"{joueur.nom}.json"), "w") \
                 as fichier:
             json.dump(joueur, fichier, indent=4, cls=Save.JoueurSerialisation)
 
@@ -97,7 +97,7 @@ class Save:
         Returns:
             Joueur: Une instance de joueur avec les données chargées.
         """
-        with open(Path(getProjectRoot() / "les_exceptions" / "le_pendu" / "sauvegardes" / f"{nomJoueur}.json"), "r") \
+        with open(Path(getProjectRoot() / "sauvegardes" / f"{nomJoueur}.json"), "r") \
                 as fichier:
             data = fichier.read()
             return json.loads(data, object_hook=Save.joueurDeserialisation)
