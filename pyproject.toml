@@ -1,22 +1,17 @@
 [tool.poetry]
-name = "pythonenfip"
+name = "petitpendu"
 version = "0.1.0"
-description = "Projets python ENFIP"
+description = "Petit jeu du pendu"
 authors = ["Yann Mazita <dev.mazita@gmail.com>"]
 license = "GPL-3.0-or-later"
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-numpy = "*"
-tk = "^0.1.0"
-pyyaml = "^6.0"
 unidecode = "^1.3.6"
 
 [tool.pyright]
-inculde = ["src"]
-venvPath = "/home/yann/.local/share/virtualenvs/"
-venv = "pythonenfip-bRzLVVl_-py3.10"
+include = ["src"]
 
 [build-system]
 requires = ["poetry-core"]
