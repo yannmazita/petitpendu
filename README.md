@@ -16,12 +16,12 @@ pip install -r requirements.txt
 ## Lancement
 
 ### Poetry
-Dans la racine du projet :
+À la racine du projet :
 ```commandline
 env PYTHONPATH=$PYTHONPATH:'.' poetry run python -u src/presentation/app.py
 ```
 ### Sinon
-Par exemple dans un venv :
+Par exemple dans un venv à la racine du projet :
 ```commandline
 env PYTHONPATH=$PYTHONPATH:'.' python -u src/presentation/app.py
 ```
