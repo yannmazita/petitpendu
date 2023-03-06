@@ -9,9 +9,9 @@ poetry install
 ```
 
 ### Sinon
-Voir requirements.txt et par exemple dans un venv:
+Par exemple dans un venv:
 ```commandline
-    pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 Voir ./LICENSE pour plus d'informations sur la license de ce programme.
