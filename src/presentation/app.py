@@ -6,10 +6,9 @@ from ..application.helpers import getProjectRoot
 
 
 def main() -> int:
-    tui: Tui = Tui()
-
     boucle: bool = True
     while boucle:
+        tui: Tui = Tui()
         tui.initialisationJoueurs()
         tui.afficherInformationsInitiales(1)
         tui.jeu.recupererMotAleatoire(Path(getProjectRoot() / "french"))
