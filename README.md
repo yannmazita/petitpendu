@@ -7,11 +7,22 @@ Petit jeu du pendu, multijoueur
 ```commandline
 poetry install
 ```
-
 ### Sinon
-Par exemple dans un venv:
+Par exemple dans un venv :
 ```commandline
 pip install -r requirements.txt
 ```
 
+## Lancement
+
+### Poetry
+Dans la racine du projet :
+```commandline
+poetry run python src/presentation/app.py
+```
+### Sinon
+Par exemple dans un venv :
+```commandline
+python src/presentation/app.py
+```
 Voir ./LICENSE pour plus d'informations sur la license de ce programme.
