@@ -102,7 +102,7 @@ class Tui:
             sys.stdout.write(f"Vous avez gagné {self.__jeu.joueurs[numeroJoueur].points} points\n")
             return True
         elif statut is False:
-            sys.stdout.write(f"Perdu!! Vous n'avez pas trouvé en {self.__jeu.essais} essais\n")
+            sys.stdout.write(f"Perdu!! Vous n'avez pas trouvé en {Jeu.essaisMax} essais\n")
             return False
         elif statut is None:
             return None
