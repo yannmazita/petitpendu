@@ -2,6 +2,7 @@
 Petit jeu du pendu
 
 ## Installation
+Python >= 3.10
 
 ### Poetry
 ```commandline
