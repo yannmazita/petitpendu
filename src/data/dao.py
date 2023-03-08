@@ -46,8 +46,8 @@ class Save:
                     "__Joueur__": True,
                     "nom": f"{obj.nom}",
                     "points": obj.points,
-                    "ratio": obj.ratioVictoires,
-                    "parties": obj.parties
+                    "parties": obj.parties,
+                    "victoires": obj.victoires
                 }
                 return data
             else:
@@ -66,9 +66,9 @@ class Save:
         if "__Joueur__" in dic:
             joueur: Joueur = Joueur()
             joueur.nom = dic["nom"]
-            joueur.points = int(dic["points"])
-            joueur.ratioVictoires = float(dic["ratio"])
-            joueur.parties = int(dic["parties"])
+            joueur.points = dic["points"]
+            joueur.parties = dic["parties"]
+            joueur.victoires = dic["victoires"]
             return joueur
         else:
             return dic

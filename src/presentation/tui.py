@@ -39,9 +39,12 @@ class Tui:
         nom: str = self.__jeu.joueur.nom
         points: int = self.__jeu.joueur.points
         parties: int = self.__jeu.joueur.parties
-        ratio: float = self.__jeu.joueur.ratioVictoires
+        victoires: float = self.__jeu.joueur.victoires
         sys.stdout.write(f"{nom}, vous avez actuellement {points} points.\n")
-        sys.stdout.write(f"Vous avez gagné {ratio} % des {parties} partie(s) jouée(s).\n")
+        if parties == 0:
+            sys.stdout.write(f"Vous n'avez pas encore fait de parties.\n")
+        else:
+            sys.stdout.write(f"Vous avez gagné {victoires * 100 / parties} % des {parties} partie(s) jouée(s).\n")
 
     def afficherMotCourant(self) -> None:
         """
@@ -51,7 +54,7 @@ class Tui:
         """
         mot: list[str] = self.__jeu.motCourant
         sys.stdout.write(f"{' '.join(mot)}\n")
-        #sys.stdout.write(f"{self.__jeu.dico.mot}\n")
+        # sys.stdout.write(f"{self.__jeu.dico.mot}\n")
 
     def demanderLettre(self) -> None:
         """
@@ -86,7 +89,8 @@ class Tui:
         elif statut is None:
             return None
 
-    def continuer(self) -> bool:
+    @staticmethod
+    def continuer() -> bool:
         """
         Demande au joueur s'il veut continuer de jouer.
         Returns:

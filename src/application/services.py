@@ -133,7 +133,7 @@ class Jeu:
 
     def determinerStatutPartie(self) -> bool | None:
         """
-        Détermine si la partie a été gagnée ou perdue et augmente le nombre de parties en conséquence.
+        Détermine si la partie a été gagnée ou perdue. Augmente le nombre de parties et victoires en conséquence.
         Returns:
             bool: True si la partie est gagnée, False si perdue, None sinon.
         """
@@ -142,6 +142,7 @@ class Jeu:
             return False
         elif "".join(self.__motCourant) == self.__dico.mot:
             self.__joueur.parties += 1
+            self.__joueur.victoires += 1
             return True
         return None
 

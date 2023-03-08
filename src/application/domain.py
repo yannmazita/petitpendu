@@ -8,7 +8,7 @@ class Joueur:
         self.__nom: str = ""
         self.__points: int = 0
         self.__parties: int = 0
-        self.__ratioVictoires: float = 1
+        self.__victoires: int = 0
 
     @property
     def nom(self):
@@ -38,13 +38,13 @@ class Joueur:
         self.__parties = partiesJoueur
 
     @property
-    def ratioVictoires(self):
-        """Ratio de victoires du joueur."""
-        return self.__ratioVictoires
+    def victoires(self):
+        """Nombre de victoires du joueur."""
+        return self.__victoires
 
-    @ratioVictoires.setter
-    def ratioVictoires(self, ratio):
-        self.__ratioVictoires = ratio
+    @victoires.setter
+    def victoires(self, victoiresJoueur):
+        self.__victoires = victoiresJoueur
 
 
 class Dictionnaire:
