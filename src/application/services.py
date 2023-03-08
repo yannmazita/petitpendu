@@ -14,7 +14,7 @@ class Jeu:
     essaisMax: int = 8
 
     def __init__(self):
-        self.__joueur: domain.Joueur = None
+        self.__joueur: domain.Joueur | None = None
         self.__dico: domain.Dictionnaire = domain.Dictionnaire()
         self.__motCourant: list[str] = []
         self.__positionsCourantes: list[int] = []
