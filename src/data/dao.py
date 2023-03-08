@@ -45,7 +45,7 @@ class Save:
                 data = {
                     "__Joueur__": True,
                     "nom": f"{obj.nom}",
-                    "points": f"{obj.points}",
+                    "points": obj.points,
                     "ratio": obj.ratioVictoires,
                     "parties": obj.parties
                 }
