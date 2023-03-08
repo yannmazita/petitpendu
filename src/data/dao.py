@@ -3,8 +3,8 @@ from random import uniform
 from unidecode import unidecode
 import json
 
-from ..application.domain import Joueur
-from ..application.helpers import getProjectRoot
+from src.application.domain import Joueur
+from src.application.helpers import getProjectRoot
 
 
 class Dictionnaire:
@@ -66,9 +66,9 @@ class Save:
         if "__Joueur__" in dic:
             joueur: Joueur = Joueur()
             joueur.nom = dic["nom"]
-            joueur.points = dic["points"]
-            joueur.ratioVictoires = dic["ratio"]
-            joueur.parties = dic["parties"]
+            joueur.points = int(dic["points"])
+            joueur.ratioVictoires = float(dic["ratio"])
+            joueur.parties = int(dic["parties"])
             return joueur
         else:
             return dic

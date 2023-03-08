@@ -1,7 +1,7 @@
 import sys
 import re
 
-from ..application.services import Jeu
+from src.application.services import Jeu
 
 
 class Tui:
