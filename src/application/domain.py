@@ -3,10 +3,8 @@ from pathlib import Path
 
 class Joueur:
     """Informations d'un joueur du pendu."""
-    nombreJoueurs: int = 0
 
     def __init__(self):
-        Joueur.nombreJoueurs += 1
         self.__nom: str = ""
         self.__points: int = 0
         self.__parties: int = 0
@@ -51,6 +49,7 @@ class Joueur:
 
 class Dictionnaire:
     """Informations sur le dictionnaire de mots"""
+
     def __init__(self):
         self.__chemin: Path = Path("")
         self.__mot: str = ""

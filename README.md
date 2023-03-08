@@ -1,5 +1,5 @@
 # Petit pendu
-Petit jeu du pendu, multijoueur
+Petit jeu du pendu
 
 ## Installation
 

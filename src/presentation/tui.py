@@ -13,48 +13,34 @@ class Tui:
         """Instance du jeu."""
         return self.__jeu
 
-    def initialisationJoueurs(self) -> None:
+    def initialisationJoueur(self) -> None:
         """
-            Initialisation du nombre de joueurs entré par l'utilisateur.
+            Initialisation du joueur entré par l'utilisateur.
         Returns:
             None
         """
-        sys.stdout.write("Combien de joueurs ? : ")
-        nombreJoueurs: str = sys.stdin.readline().strip()
 
-        while not (re.search("^([1-9]|0[1-9]|[1-9]([0-9])+)$", nombreJoueurs)):
-            sys.stdout.write("Seuls les nombres entiers strictement positifs sont autorisés.\nCombien de joueurs ? : ")
-            nombreJoueurs: str = sys.stdin.readline()
+        while True:
+            sys.stdout.write(f"Quel est le nom du joueur ? : ")
+            nom = sys.stdin.readline().strip()
+            try:
+                nom.encode('ascii')
+                break
+            except UnicodeEncodeError:
+                sys.stdout.write(f"Seuls les caractères ASCII sont autorisés.\n")
 
-        noms: list[str] = []
+        self.__jeu.ajouterJoueurs(nom)
 
-        for i in range(0, int(nombreJoueurs)):
-            while True:
-                sys.stdout.write(f"Quel est le nom du joueur {i + 1} ? : ")
-                nom = sys.stdin.readline().strip()
-                try:
-                    nom.encode('ascii')
-                    break
-                except UnicodeEncodeError:
-                    sys.stdout.write(f"Seuls les caractères ASCII sont autorisés.\n")
-
-            noms.append(nom)
-
-        self.__jeu.ajouterJoueurs(noms)
-
-    def afficherInformationsInitiales(self, numeroJoueur: int) -> None:
+    def afficherInformationsInitiales(self) -> None:
         """
-        Affiche les informations initiales sur un joueur.
-        Args:
-            numeroJoueur: Le numéro du joueur.
-
+        Affiche les informations initiales du joueur.
         Returns:
             None
         """
-        nom: str = self.__jeu.joueurs[numeroJoueur].nom
-        points: int = self.__jeu.joueurs[numeroJoueur].points
-        parties: int = self.__jeu.joueurs[numeroJoueur].parties
-        ratio: float = self.__jeu.joueurs[numeroJoueur].ratioVictoires
+        nom: str = self.__jeu.joueur.nom
+        points: int = self.__jeu.joueur.points
+        parties: int = self.__jeu.joueur.parties
+        ratio: float = self.__jeu.joueur.ratioVictoires
         sys.stdout.write(f"{nom}, vous avez actuellement {points} points.\n")
         sys.stdout.write(f"Vous avez gagné {ratio} % des {parties} partie(s) jouée(s).\n")
 
@@ -68,17 +54,14 @@ class Tui:
         sys.stdout.write(f"{' '.join(mot)}\n")
         #sys.stdout.write(f"{self.__jeu.dico.mot}\n")
 
-    def demanderLettre(self, numeroJoueur: int) -> None:
+    def demanderLettre(self) -> None:
         """
         Demande une lettre au joueur.
-        Args:
-            numeroJoueur: Le numéro du joueur.
-
         Returns:
             None
         """
         while True:
-            sys.stdout.write(f"Joueur {numeroJoueur}, donnez une lettre (reste {self.__jeu.essais} essais)\n")
+            sys.stdout.write(f"{self.__jeu.joueur.nom}, donnez une lettre (reste {self.__jeu.essais} essais)\n")
             lettre: str = sys.stdin.readline().strip()
             try:
                 self.__jeu.saisieLettre(lettre)
@@ -86,20 +69,17 @@ class Tui:
             except TypeError as e:
                 sys.stdout.write(f"{e}")
 
-    def afficherStatutPartie(self, numeroJoueur: int) -> bool | None:
+    def afficherStatutPartie(self) -> bool | None:
         """
         Affiche si le joueur a gagné ou perdu la partie.
-        Args:
-            numeroJoueur: Le numéro du joueur.
-
         Returns:
             bool | None: True si le joueur a gagné False s'il a perdu, None sinon.
         """
         statut: bool | None = self.__jeu.determinerStatutPartie()
         if statut:
-            sys.stdout.write(f"Bravo {self.__jeu.joueurs[numeroJoueur].nom}, vous avez trouvé en {self.__jeu.essais} "
+            sys.stdout.write(f"Bravo {self.__jeu.joueur.nom}, vous avez trouvé en {self.__jeu.essais} "
                              f"essais le mot : {self.__jeu.dico.mot}\n")
-            sys.stdout.write(f"Vous avez gagné {self.__jeu.joueurs[numeroJoueur].points} points\n")
+            sys.stdout.write(f"Vous avez gagné {self.__jeu.joueur.points} points\n")
             return True
         elif statut is False:
             sys.stdout.write(f"Perdu!! Vous n'avez pas trouvé en {Jeu.essaisMax} essais\n")

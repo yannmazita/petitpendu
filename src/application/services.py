@@ -14,16 +14,16 @@ class Jeu:
     essaisMax: int = 8
 
     def __init__(self):
-        self.__joueurs: dict[int, domain.Joueur] = {}
+        self.__joueur: domain.Joueur = None
         self.__dico: domain.Dictionnaire = domain.Dictionnaire()
         self.__motCourant: list[str] = []
         self.__positionsCourantes: list[int] = []
         self.__essais: int = Jeu.essaisMax
 
     @property
-    def joueurs(self):
-        """Dictionnaire des joueurs du jeu."""
-        return self.__joueurs
+    def joueur(self):
+        """Joueur du jeu."""
+        return self.__joueur
 
     @property
     def motCourant(self):
@@ -60,21 +60,20 @@ class Jeu:
         except IOError:
             return None
 
-    def ajouterJoueurs(self, noms: list[str]) -> None:
+    def ajouterJoueurs(self, nom: str) -> None:
         """
-        Ajouter une liste de joueurs à la collection de Jeu.
+        Ajouter un joueur à la collection de Jeu.
         Args:
-            noms: Les noms de joueurs à ajouter.
+            nom: Le nom du joueur à ajouter.
 
         Returns:
             None
         """
-        for nom in noms:
-            joueur: domain = Jeu.chargerJoueur(nom)
-            if joueur is None:
-                joueur = domain.Joueur()
-                joueur.nom = nom
-            self.__joueurs[domain.Joueur.nombreJoueurs] = joueur
+        joueur: domain = Jeu.chargerJoueur(nom)
+        if joueur is None:
+            joueur = domain.Joueur()
+            joueur.nom = nom
+        self.__joueur = joueur
 
     def recupererMotAleatoire(self, path: Path) -> None:
         """
@@ -117,12 +116,9 @@ class Jeu:
         else:
             raise TypeError("Seules les lettres sont autorisées")
 
-    def calculerPoints(self, numeroJoueur: int) -> None:
+    def calculerPoints(self) -> None:
         """
         Calcul de différents points du jeu.
-        Args:
-            numeroJoueur: Le numéro du joueur.
-
         Returns:
             None
         """
@@ -130,10 +126,10 @@ class Jeu:
             self.__essais = max(0, self.__essais - 1)
 
         if "".join(self.__motCourant) == self.__dico.mot:
-            self.joueurs[numeroJoueur].points += self.__essais
+            self.__joueur.points += self.__essais
         if self.__essais == 0:
-            pointsCourants: int = self.joueurs[numeroJoueur].points
-            self.joueurs[numeroJoueur].points = max(0, pointsCourants - 3)
+            pointsCourants: int = self.__joueur.points
+            self.__joueur.points = max(0, pointsCourants - 3)
 
     def determinerStatutPartie(self) -> bool | None:
         """
@@ -142,21 +138,17 @@ class Jeu:
             bool: True si la partie est gagnée, False si perdue, None sinon.
         """
         if self.__essais == 0:
-            for numeroJoueur in self.__joueurs:
-                self.__joueurs[numeroJoueur].parties += 1
+            self.__joueur.parties += 1
             return False
         elif "".join(self.__motCourant) == self.__dico.mot:
-            for numeroJoueur in self.__joueurs:
-                self.__joueurs[numeroJoueur].parties += 1
+            self.__joueur.parties += 1
             return True
         return None
 
     def sauvegarderPartie(self) -> None:
         """
-        Sauvegarde des informations de tous les joueurs de la partie.
+        Sauvegarde des informations du joueur de la partie.
         Returns:
             None
         """
-        joueurs: dict[int, domain.Joueur] = self.__joueurs
-        for numeroJoueur in joueurs:
-            dao.Save.sauvegarderJoueur(joueurs[numeroJoueur])
+        dao.Save.sauvegarderJoueur(self.__joueur)
