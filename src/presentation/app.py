@@ -15,11 +15,10 @@ def main() -> int:
 
         statut: bool | None = None
         while tui.jeu.essais > 0 and (statut is not True) and (statut is not False):
-            if tui.jeu.essais > 0 and (statut is not True) and (statut is not False):
-                tui.afficherMotCourant()
-                tui.demanderLettre()
-                tui.jeu.calculerPoints()
-                statut = tui.afficherStatutPartie()
+            tui.afficherMotCourant()
+            tui.demanderLettre()
+            tui.jeu.calculerPoints()
+            statut = tui.afficherStatutPartie()
 
         tui.jeu.sauvegarderPartie()
         if not tui.continuer():
