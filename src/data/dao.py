@@ -74,7 +74,7 @@ class Save:
             return dic
 
     @staticmethod
-    def sauvegarderJoueur(joueur: Joueur) -> None:
+    def sauvegarderJoueur(joueur: Joueur | None) -> None:
         """
         Sauvegarde sur le disque de quelques informations sur le joueur.
         Args:

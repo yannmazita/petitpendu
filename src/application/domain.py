@@ -11,39 +11,39 @@ class Joueur:
         self.__victoires: int = 0
 
     @property
-    def nom(self):
+    def nom(self) -> str:
         """Nom d'un joueur."""
         return self.__nom
 
     @nom.setter
-    def nom(self, nomDuJoueur):
+    def nom(self, nomDuJoueur: str) -> None:
         self.__nom = nomDuJoueur
 
     @property
-    def points(self):
+    def points(self) -> int:
         """Points d'un joueur."""
         return self.__points
 
     @points.setter
-    def points(self, pointsJoueur):
+    def points(self, pointsJoueur: int) -> None:
         self.__points = pointsJoueur
 
     @property
-    def parties(self):
+    def parties(self) -> int:
         """Nombre de parties du joueur."""
         return self.__parties
 
     @parties.setter
-    def parties(self, partiesJoueur):
+    def parties(self, partiesJoueur: int) -> None:
         self.__parties = partiesJoueur
 
     @property
-    def victoires(self):
+    def victoires(self) -> int:
         """Nombre de victoires du joueur."""
         return self.__victoires
 
     @victoires.setter
-    def victoires(self, victoiresJoueur):
+    def victoires(self, victoiresJoueur: int) -> None:
         self.__victoires = victoiresJoueur
 
 
@@ -55,12 +55,12 @@ class Dictionnaire:
         self.__mot: str = ""
 
     @property
-    def chemin(self):
+    def chemin(self) -> Path:
         """Chemin d'accès du dictionnaire"""
         return self.__chemin
 
     @chemin.setter
-    def chemin(self, cheminAcces):
+    def chemin(self, cheminAcces: Path) -> None:
         self.__chemin = cheminAcces
 
     @property
@@ -69,5 +69,5 @@ class Dictionnaire:
         return self.__mot
 
     @mot.setter
-    def mot(self, motDictionnaire):
+    def mot(self, motDictionnaire: str) -> None:
         self.__mot = motDictionnaire

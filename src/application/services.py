@@ -21,7 +21,7 @@ class Jeu:
         self.__essais: int = Jeu.essaisMax
 
     @property
-    def joueur(self):
+    def joueur(self) -> domain.Joueur | None:
         """Joueur du jeu."""
         return self.__joueur
 
@@ -69,7 +69,7 @@ class Jeu:
         Returns:
             None
         """
-        joueur: domain = Jeu.chargerJoueur(nom)
+        joueur: domain.Joueur | None = Jeu.chargerJoueur(nom)
         if joueur is None:
             joueur = domain.Joueur()
             joueur.nom = nom
